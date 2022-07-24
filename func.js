@@ -16,8 +16,17 @@ function api() {
   }
 }
 
+function runCallback(num, callback) {
+  const result = num * 5;
+
+  if (result < 100) {
+    callback(result);
+  }
+}
+
 module.exports = {
   sum,
   obj,
   api,
+  runCallback,
 };

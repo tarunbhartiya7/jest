@@ -1,4 +1,4 @@
-const { sum, obj, api } = require("./func");
+const { sum, obj, api, runCallback } = require("./func");
 
 it("adds 1 + 2 to equal 3", () => {
   expect(sum(1, 2)).toEqual(3);
@@ -39,4 +39,27 @@ test("should test asynchronous function with async await syntax", async () => {
   const res = await api();
   expect(res.data.id).toBe(1);
   // await expect(api()).resolves.toBe("peanut butter");
+});
+
+describe("runCallback", () => {
+  const callbackMock = jest.fn();
+  // const callbackMock = jest.fn(() => "result of some complex logic"); // this way you can mock a complex computation fucntion
+
+  test("should run callback for num < 100", () => {
+    runCallback(10, callbackMock);
+
+    expect(callbackMock).toHaveBeenCalled();
+    expect(callbackMock).toHaveBeenCalledTimes(1);
+    expect(callbackMock).toHaveBeenCalledWith(50);
+  });
+
+  test("should run not callback for num >= 100", () => {
+    runCallback(30, callbackMock);
+
+    expect(callbackMock).not.toHaveBeenCalled();
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 });
