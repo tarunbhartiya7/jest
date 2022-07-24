@@ -94,3 +94,14 @@ test("should test mock implementation of a basic function", () => {
 
   jest.clearAllMocks();
 });
+
+test("spying using original implementation", () => {
+  const pizza = {
+    name: (n) => `Pizza name: ${n}`,
+  };
+
+  const spy = jest.spyOn(pizza, "name");
+
+  expect(pizza.name("Cheese")).toBe("Pizza name: Cheese");
+  expect(spy).toHaveBeenCalledWith("Cheese");
+});
