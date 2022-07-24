@@ -20,6 +20,8 @@ test("the shopping list has milk on it", () => {
     "milk",
   ];
   expect(shoppingList).toContain("milk");
+  expect(shoppingList).toHaveLength(5);
+  expect(shoppingList[0]).toEqual("diapers");
 });
 
 test("compiling android goes as expected", () => {
@@ -62,4 +64,23 @@ describe("runCallback", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
+});
+
+test("pizza list should have properties id, name, price", () => {
+  const pizza = [
+    {
+      id: 1,
+      name: "pizza 1",
+      price: 30,
+    },
+    {
+      id: 2,
+      name: "pizza 2",
+      price: 50,
+    },
+  ];
+
+  expect(pizza[0]).toHaveProperty("id");
+  expect(pizza[0]).toHaveProperty("name");
+  expect(pizza[0]).toHaveProperty("price");
 });
