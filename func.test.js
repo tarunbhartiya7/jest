@@ -105,3 +105,18 @@ test("spying using original implementation", () => {
   expect(pizza.name("Cheese")).toBe("Pizza name: Cheese");
   expect(spy).toHaveBeenCalledWith("Cheese");
 });
+
+test("spying using mock implementation", () => {
+  const pizza = {
+    name: (n) => `Pizza name: ${n}`,
+  };
+
+  const spy = jest
+    .spyOn(pizza, "name")
+    .mockImplementation(() => "Mocking the function");
+
+  expect(pizza.name("Cheese")).toBe("Mocking the function");
+
+  spy.mockRestore();
+  expect(pizza.name("Cheese")).toBe("Pizza name: Cheese");
+});
