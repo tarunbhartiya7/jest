@@ -84,3 +84,13 @@ test("pizza list should have properties id, name, price", () => {
   expect(pizza[0]).toHaveProperty("name");
   expect(pizza[0]).toHaveProperty("price");
 });
+
+test("should test mock implementation of a basic function", () => {
+  const mock = jest.fn(() => "mock function");
+
+  expect(mock("calling mock function")).toBe("mock function");
+  expect(mock).toHaveBeenCalledWith("calling mock function");
+  expect(mock).toHaveBeenCalledTimes(1);
+
+  jest.clearAllMocks();
+});
