@@ -133,3 +133,21 @@ test("matcher", () => {
 
   expect(received).toMatchObject(expected);
 });
+
+test("expect a promise to resolve", async () => {
+  const user = {
+    getFullName: jest.fn(() => Promise.resolve("James")),
+  };
+
+  await expect(user.getFullName()).resolves.toBe("James");
+});
+
+test("expect a promise to reject", async () => {
+  const user = {
+    getFullName: jest.fn(() =>
+      Promise.reject(new Error("Something went wrong!"))
+    ),
+  };
+
+  await expect(user.getFullName()).rejects.toThrow("Something went wrong!");
+});
