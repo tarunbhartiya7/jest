@@ -120,3 +120,16 @@ test("spying using mock implementation", () => {
   spy.mockRestore();
   expect(pizza.name("Cheese")).toBe("Pizza name: Cheese");
 });
+
+// use toMatchObject to match a subset and toEqual for deep equality check
+test("matcher", () => {
+  const received = {
+    a: 1,
+    b: 2,
+  };
+  const expected = {
+    a: 1,
+  };
+
+  expect(received).toMatchObject(expected);
+});
